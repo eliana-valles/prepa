@@ -42,7 +42,8 @@
                       </div>
                     </div>
                 </div>
-            <!--fin de l'aside-->
+            <!--fin aside-->
+            
             <!--formulaire-->
                 <div class="col-xs-9">
                     <div class="bs-docs-section">
@@ -54,7 +55,7 @@
                     
                       <div>
                         <div class="well bs-component">
-                          <form id="creationExercice" action="" method="post" class="form-horizontal">
+                          <form id="creationExercice" action="exercice_traitement.php" method="post" class="form-horizontal">
                             <fieldset>
                                 <!--nom exo-->
                                   <div class="form-group">
@@ -132,10 +133,10 @@
                                     </div>
                                   </div>
                                   <!--upload img--> 
-                                  <!--<div class="form-group">
+                                  <div class="form-group">
                                     <input type='file' class='input-ghost' style='visibility:hidden; height:0'>
                                     <div class="col-lg-10">
-                                        <div class="input-group input-file" name="Fichier_1">
+                                        <div class="input-group input-file" name="fichier1">
                                         <span class="input-group-btn">
                                             <button class="btn btn-default btn-choose" type="button">Image</button>
                                         </span>
@@ -145,7 +146,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                    </div>-->
+                                    </div>
                                     <div style=" margin: 0;text-align: center; padding-top: 20px;">
                                         <input type="submit" id="submit" name="submit" value="Envoyer" class="btn btn-info"></button>
                                         <button id="effacer" type="reset" class="btn btn-danger">Effacer</button>
@@ -160,6 +161,10 @@
                 </div>
                 <!--fin formulaire-->
             </div> 
+            <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">  
+                </div>
+            </div>
         </div>
        
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -169,31 +174,6 @@
         <script src="js/bootstrap.js"></script>
     </body>
 
-    <!--traitement-->
-    <?php
-
-
-    if(isset($_POST['submit']) && !empty($_POST['submit'])) {
-        $lib_exercise=$_POST['libelleExercice'];
-        $idgroupe_primaire=$_POST['groupe1'];
-        $idgroupe_secondaire=$_POST['groupe2'];
-        $idtype=$_POST['typeEffort'];
-        $description=$_POST['description'];
-
-        //Insert data
-        $query = "INSERT INTO exercise
-        (lib_exercise,idgroupe_primaire,idgroupe_secondaire,idtype,description)
-        VALUES
-        ('$lib_exercise','$idgroupe_primaire','$idgroupe_secondaire','$idtype','$description')";
-
-        mysqli_query($conn,$query);
-
-        $conn->close();
-    } else {
-        echo "Erreur";
-    }
-    ?>
-    <!--fin traitement-->
     <script>
     $(".effacer").click(function(){
         element.val(null);
@@ -224,11 +204,11 @@
                 }
             }
         );
-    }
+    }#ff8000
     function bs_input_file() {
         $(".input-file").before(
             function() {
-                if ( ! $(this).prev().hasClass('input-ghost') ) {
+                if ( ! $(this).prev().hasClass('input-ghost') ) {#FF0080
                     var element = $("<input type='file' class='input-ghost' style='visibility:hidden; height:0'>");
                     element.attr("name",$(this).attr("name"));
                     element.change(function(){
